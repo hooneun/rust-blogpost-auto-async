@@ -14,6 +14,6 @@ pub struct User {
 #[table_name = "users"]
 pub struct NewUser {
     pub name: String,
-    pub eamil: String,
+    pub email: String,
     pub created_at: chrono::NaiveDateTime,
 }
