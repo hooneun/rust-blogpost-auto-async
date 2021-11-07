@@ -1,18 +1,17 @@
 #[macro_use]
 extern crate diesel;
 
-use std::ptr::Pointee;
-
 use actix_web::{web, App, HttpServer};
 use diesel::prelude::*;
 use diesel::r2d2::{self, ConnectionManager};
+use diesel::pg::PgConnection;
 
 mod errors;
 mod handlers;
 mod models;
 mod schema;
 
-pub type Pool = r2d2::Pool<ConnectionManager<PgConnection>>>;
+pub type Pool = r2d2::Pool<ConnectionManager<PgConnection>>;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
