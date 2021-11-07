@@ -15,7 +15,7 @@ pub struct InputUser {
     pub email: String,
 }
 
-pub async fn get_users(db: web::Data<Pool>) -> Reult<HttpResponse, Error> {
+pub async fn get_users(db: web::Data<Pool>) -> Result<HttpResponse, Error> {
     Ok(web::block(move || get_all_users(db))
         .await
         .map(|user| HttpResponse::Ok().json(user))
@@ -40,7 +40,7 @@ pub async fn add_user(
 ) -> Result<HttpResponse, Error> {
     Ok(web::block(move || add_single_user(db, item))
         .await
-        .map(|user| HttpRespose::Created().json(user))
+        .map(|user| HttpResponse::Created().json(user))
         .map_err(|_| HttpResponse::InternalServerError()?))
 }
 

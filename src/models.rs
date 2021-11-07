@@ -12,8 +12,8 @@ pub struct User {
 
 #[derive(Insertable, Debug)]
 #[table_name = "users"]
-pub struct NewUser {
-    pub name: String,
-    pub email: String,
+pub struct NewUser<'a> {
+    pub name: &'a str,
+    pub email: &'a str,
     pub created_at: chrono::NaiveDateTime,
 }
